@@ -1,0 +1,77 @@
+{
+    "2020-01-05-fifth-post.md": {
+        "title": "Fifth Post",
+        "collection": "posts",
+        "date": {
+            "date": "2020-01-01 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+        },
+        "contents": "Body for fifth post",
+        "mode": "0644",
+        "path": "2020-01-05-fifth-post.md"
+    },
+    "2020-01-04-fourth-post.md": {
+        "title": "Fourth Post",
+        "date": {
+            "date": "2020-01-01 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+        },
+        "contents": "Body for fourth post",
+        "mode": "0644",
+        "path": "2020-01-04-fourth-post.md"
+    },
+    "2020-01-02-second-post.md": {
+        "title": "Second Post",
+        "date": {
+            "date": "2020-01-02 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+        },
+        "contents": "Body for second post",
+        "mode": "0644",
+        "path": "2020-01-02-second-post.md"
+    },
+    "2020-01-01-first-post.md": {
+        "title": "First Post",
+        "collection": "posts",
+        "date": {
+            "date": "2020-01-01 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+        },
+        "contents": "Body for first post",
+        "mode": "0644",
+        "path": "2020-01-01-first-post.md"
+    },
+    "2020-01-06-sixth-post.md": {
+        "title": "Sixth Post",
+        "collection": "other",
+        "date": {
+            "date": "2020-01-01 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+        },
+        "contents": "Body for sixth post",
+        "mode": "0644",
+        "path": "2020-01-06-sixth-post.md"
+    },
+    "2020-01-03-third-post.md": {
+        "title": "Third Post",
+        "collection": "posts",
+        "date": {
+            "date": "2020-01-03 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+        },
+        "contents": "Body for third post",
+        "mode": "0644",
+        "path": "2020-01-03-third-post.md"
+    },
+    "feed.xml": {
+        "contents": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<feed xmlns=\"http:\/\/www.w3.org\/2005\/Atom\">\n  <title>Example Feed<\/title>\n  <link>http:\/\/example.org\/<\/link>\n  <author>\n    <name>John Doe<\/name>\n  <\/author>\n  <entry>\n    <title>Fifth Post<\/title>\n    <link>http:\/\/example.org\/2020-01-05-fifth-post.md<\/link>\n    <summary>Body for fifth post<\/summary>\n    <published>2020-01-01T00:00:00+00:00<\/published>\n  <\/entry>\n  <entry>\n    <title>First Post<\/title>\n    <link>http:\/\/example.org\/2020-01-01-first-post.md<\/link>\n    <summary>Body for first post<\/summary>\n    <published>2020-01-01T00:00:00+00:00<\/published>\n  <\/entry>\n  <entry>\n    <title>Third Post<\/title>\n    <link>http:\/\/example.org\/2020-01-03-third-post.md<\/link>\n    <summary>Body for third post<\/summary>\n    <published>2020-01-03T00:00:00+00:00<\/published>\n  <\/entry>\n<\/feed>\n",
+        "mode": "0644",
+        "path": "feed.xml"
+    }
+}
