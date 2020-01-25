@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "datashaman/tongs": "dev-master"
+    "datashaman/tongs": "^0.2.5"
   },
   "require-dev": {
     "phpunit/phpunit": "^8.5"

@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "30642cf5765b1f2d06c95d10b978d459",
+    "content-hash": "c5c72bc159325589ea2d6e1b52ed7cea",
     "packages": [
         {
             "name": "datashaman/tongs",
-            "version": "dev-master",
+            "version": "0.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/datashaman/tongs.git",
-                "reference": "1eb6efd466f90783285e3ec1f8ff8510abec37d1"
+                "reference": "6a198eea97262f4735164e62232b53693b526e66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/datashaman/tongs/zipball/1eb6efd466f90783285e3ec1f8ff8510abec37d1",
-                "reference": "1eb6efd466f90783285e3ec1f8ff8510abec37d1",
+                "url": "https://api.github.com/repos/datashaman/tongs/zipball/6a198eea97262f4735164e62232b53693b526e66",
+                "reference": "6a198eea97262f4735164e62232b53693b526e66",
                 "shasum": ""
             },
             "require": {
@@ -74,7 +74,7 @@
                 "metalsmith",
                 "static site generator"
             ],
-            "time": "2020-01-25T06:12:45+00:00"
+            "time": "2020-01-25T09:51:00+00:00"
         },
         {
             "name": "datashaman/tongs-permalinks",
@@ -4247,9 +4247,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "datashaman/tongs": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
