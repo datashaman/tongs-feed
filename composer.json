@@ -1,45 +1,52 @@
 {
-  "name": "datashaman/tongs-feed",
-  "type": "library",
-  "description": "Feed plugin for Tongs",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Marlin Forbes",
-      "email": "marlinf@datashamab.com"
+    "name": "datashaman/tongs-feed",
+    "type": "library",
+    "description": "Feed plugin for Tongs",
+    "keywords": [
+        "laravel",
+        "ssg",
+        "static-site",
+        "static-site-generator",
+        "tongs",
+        "tongs-plugin"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marlin Forbes",
+            "email": "marlinf@datashamab.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "datashaman/tongs": "0.3.*",
+        "phpunit/phpunit": "^8.5"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "tongs": {
+            "plugins": {
+                "feed": "Datashaman\\Tongs\\Plugins\\FeedPlugin"
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Datashaman\\Tongs\\Plugins\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Datashaman\\Tongs\\Plugins\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "test": "vendor/bin/phpunit"
     }
-  ],
-  "require": {
-  },
-  "require-dev": {
-    "datashaman/tongs": "0.3.*",
-    "phpunit/phpunit": "^8.5"
-  },
-  "config": {
-    "optimize-autoloader": true,
-    "preferred-install": "dist",
-    "sort-packages": true
-  },
-  "extra": {
-    "tongs": {
-      "plugins": {
-        "feed": "Datashaman\\Tongs\\Plugins\\FeedPlugin"
-      }
-    }
-  },
-  "autoload": {
-    "psr-4": {
-      "Datashaman\\Tongs\\Plugins\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Datashaman\\Tongs\\Plugins\\Tests\\": "tests/"
-    }
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "scripts": {
-    "test": "vendor/bin/phpunit"
-  }
 }
