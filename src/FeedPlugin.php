@@ -14,14 +14,13 @@ use SimpleXMLElement;
 class FeedPlugin extends Plugin
 {
     /**
-     * @param Tongs $tongs
      * @param array $options
      */
-    public function __construct(Tongs $tongs, array $options = [])
+    public function __construct(array $options = [])
     {
         $options = $this->normalize($options);
 
-        parent::__construct($tongs, $options);
+        parent::__construct($options);
     }
 
     /**
@@ -34,7 +33,7 @@ class FeedPlugin extends Plugin
      */
     public function handle(Collection $files, callable $next): Collection
     {
-        $metadata = $this->tongs->metadata();
+        $metadata = $this->tongs()->metadata();
 
         if (!Arr::get($metadata, 'collections')) {
             throw new Exception('No collections configured, use collections');
