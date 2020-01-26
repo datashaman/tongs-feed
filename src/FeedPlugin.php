@@ -50,7 +50,8 @@ class FeedPlugin extends Plugin
             ->take($this->options['limit'])
             ->each(
                 function ($file, $path) use ($feed) {
-                    $link = $file['url'] ?? "{$feed->link}{$file['path']}";
+                    $link = $file['path'] ?? $path;
+                    $link = "{$feed->link}{$link}";
 
                     $entry = $feed->addChild('entry');
 
@@ -71,12 +72,11 @@ class FeedPlugin extends Plugin
 
                     $this->addChildren($entry, $children);
                 }
-        );
+            );
 
         $files[$this->options['destination']] = [
             'contents' => $this->createOutput($feed),
             'mode' => '0644',
-            'path' => $this->options['destination'],
         ];
 
         return $next($files);
@@ -131,21 +131,6 @@ class FeedPlugin extends Plugin
             $defaults,
             $options
         );
-    }
-
-    /**
-     * Transform an individual file's metadata.
-     *
-     * @param array $file
-     * @param string $path
-     *
-     * @return array
-     */
-    protected function transform(array $file, string $path): array
-    {
-        $file['contents'] = $file['title'];
-
-        return $file;
     }
 
     /**
