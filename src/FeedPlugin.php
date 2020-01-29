@@ -7,8 +7,6 @@ use Datashaman\Tongs\Tongs;
 use DateTime;
 use DOMDocument;
 use Exception;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use SimpleXMLElement;
 
 class FeedPlugin extends Plugin
@@ -26,56 +24,54 @@ class FeedPlugin extends Plugin
     /**
      * Handle files passed down the pipeline, and call the next plugin in the pipeline.
      *
-     * @param Collection $files
+     * @param array $files
      * @param callable $next
      *
-     * @return Collection
+     * @return array
      */
-    public function handle(Collection $files, callable $next): Collection
+    public function handle(array $files, callable $next): array
     {
         $metadata = $this->tongs()->metadata();
 
-        if (!Arr::get($metadata, 'collections')) {
-            throw new Exception('No collections configured, use collections');
+        if (!isset($metadata['collections'])) {
+            throw new Exception('No collections configured, use collections plugin');
         }
-
-        $collection = $this->options['collection'];
 
         $feed = new SimpleXMLElement('<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"></feed>');
 
         $this->addChildren($feed, $this->options['feed']);
 
-        collect(Arr::get($metadata, "collections.{$collection}"))
-            ->take($this->options['limit'])
-            ->each(
-                function ($file, $path) use ($feed) {
-                    $link = $file['path'] ?? $path;
-                    $link = "{$feed->link}{$link}";
+        $collection = $this->options['collection'];
 
-                    $entry = $feed->addChild('entry');
+        $collectionFiles = array_slice(
+            $metadata['collections'][$collection],
+            0,
+            $this->options['limit']
+        );
 
-                    $children = [
-                        'title' => Arr::get($file, 'title', ''),
-                        'link' => $link,
-                        'summary' => Arr::get(
-                            $file,
-                            Arr::get($this->options, 'excerpt', 'excerpt'),
-                            Arr::get($file, 'contents')
-                        ),
-                        // 'updated' => Arr::get($file, 'updated'),
-                    ];
+        foreach ($collectionFiles as $path => $file) {
+            $link = $file['path'] ?? $path;
+            $link = "{$feed->link}{$link}";
 
-                    if (Arr::has($file, 'date')) {
-                        $children['published'] = $file['date']->format('c');
-                    }
+            $entry = $feed->addChild('entry');
 
-                    $this->addChildren($entry, $children);
-                }
-            );
+            $children = [
+                'title' => $file['title'] ?? '',
+                'link' => $link,
+                'summary' => $file[$this->options['excerpt'] ?? 'excerpt']
+                    ?? $file['contents']
+                    ?? '',
+            ];
+
+            if (isset($file['date'])) {
+                $children['published'] = $file['date']->format('c');
+            }
+
+            $this->addChildren($entry, $children);
+        }
 
         $files[$this->options['destination']] = [
             'contents' => $this->createOutput($feed),
-            'mode' => '0644',
         ];
 
         return $next($files);
@@ -113,11 +109,11 @@ class FeedPlugin extends Plugin
      */
     protected function normalize(array $options): array
     {
-        if (!Arr::has($options, 'collection')) {
+        if (!isset($options['collection'])) {
             throw new Exception('collection is required');
         }
 
-        if (!Arr::has($options, 'feed')) {
+        if (!isset($options['feed'])) {
             throw new Exception('feed is required');
         }
 
