@@ -41,16 +41,19 @@ class FeedPlugin extends Plugin
 
         $this->addChildren($feed, $this->options['feed']);
 
-        $collection = $this->options['collection'];
+        $key = $this->options['collection'];
+        $collection = $metadata['collections'][$key];
 
-        $collectionFiles = array_slice(
-            $metadata['collections'][$collection],
+        $paths = array_slice(
+            array_keys($collection),
             0,
             $this->options['limit']
         );
 
-        foreach ($collectionFiles as $path => $file) {
-            $link = $file['path'] ?? $path;
+        foreach ($paths as $path) {
+            $file = $collection[$path];
+
+            $link = $path;
             $link = "{$feed->link}{$link}";
 
             $entry = $feed->addChild('entry');

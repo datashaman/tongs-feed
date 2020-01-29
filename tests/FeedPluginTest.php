@@ -16,9 +16,8 @@ class FeedPluginTest extends TestCase
     {
         $tongs = new Tongs($this->fixture('basic'));
         $files = $tongs
-            ->use(new CollectionsPlugin($tongs))
+            ->use(new CollectionsPlugin())
             ->use(new FeedPlugin(
-                $tongs,
                 [
                     'collection' => 'posts',
                     'feed' => [
@@ -28,6 +27,7 @@ class FeedPluginTest extends TestCase
                             'name' => 'John Doe',
                         ],
                     ],
+                    'limit' => 2,
                 ]
             ))
             ->build();
@@ -36,14 +36,11 @@ class FeedPluginTest extends TestCase
         $this->assertDirEquals($this->fixture('basic/expected'), $this->fixture('basic/build'));
     }
 
-    protected function assertFiles(string $expected, Collection $actual)
+    protected function assertFiles(string $expected, array $actual)
     {
         $this->assertEquals(
-            trim(File::get($expected)),
-            trim(json_encode(
-                $actual->all(),
-                JSON_PRETTY_PRINT
-            ))
+            json_decode(File::get($expected), true),
+            json_decode(json_encode($actual), true),
         );
     }
 }
